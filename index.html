@@ -1,0 +1,130 @@
+<!DOCTYPE html><html lang="en"><head>  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Album</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: sans-serif;
+      background: linear-gradient(120deg, #f6d365, #fda085);
+      overflow-x: hidden;
+    }
+    .floating {
+      position: fixed;
+      z-index: 1;
+      pointer-events: none;
+      animation: float 6s infinite ease-in-out;
+    }@keyframes float {
+  0% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(-50px); opacity: 0.7; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  gap: 20px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #fff;
+  animation: fadeIn 2s;
+}
+
+.btn {
+  background-color: #fff;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+  background-color: #ffd6d6;
+  transform: scale(1.05);
+}
+
+.album {
+  display: none;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 40px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.photo {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.5s, box-shadow 0.5s;
+}
+
+.photo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+}
+
+.photo img {
+  width: 100%;
+  display: block;
+}
+
+.back {
+  margin-top: 20px;
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0; transform: translateY(30px);}
+  100% {opacity: 1; transform: translateY(0);}
+}
+
+  </style>
+</head>
+<body>
+  <!-- Floating elements -->
+  <img class="floating" src="https://i.imgur.com/KFGXSWd.jpeg" style="top: 10%; left: 5%; width: 40px;">
+  <img class="floating" src="https://i.imgur.com/KFGXSWd.jpeg" style="top: 30%; right: 10%; width: 40px; animation-delay: 1s;">
+  <img class="floating" src="https://i.imgur.com/KFGXSWd.jpeg" style="bottom: 10%; left: 20%; width: 40px; animation-delay: 2s;">
+  <img class="floating" src="https://i.imgur.com/KFGXSWd.jpeg" style="bottom: 20%; right: 15%; width: 40px; animation-delay: 3s;">  <!-- Heart and Cat Emojis -->  <img class="floating" src="https://em-content.zobj.net/source/apple/391/red-heart_2764-fe0f.png" style="top: 5%; left: 50%; width: 30px; animation-delay: 1.5s;">
+  <img class="floating" src="https://em-content.zobj.net/source/apple/391/red-heart_2764-fe0f.png" style="bottom: 5%; right: 30%; width: 30px; animation-delay: 2s;">
+  <img class="floating" src="https://em-content.zobj.net/source/apple/391/red-heart_2764-fe0f.png" style="top: 25%; right: 40%; width: 30px; animation-delay: 1.8s;">
+  <img class="floating" src="https://em-content.zobj.net/source/apple/391/red-heart_2764-fe0f.png" style="bottom: 25%; left: 10%; width: 30px; animation-delay: 2.5s;">
+  <img class="floating" src="https://em-content.zobj.net/source/apple/391/smiling-cat-face-with-heart-eyes_1f63b.png" style="top: 20%; left: 70%; width: 35px; animation-delay: 3s;">
+  <img class="floating" src="https://em-content.zobj.net/source/apple/391/smiling-cat-face-with-heart-eyes_1f63b.png" style="bottom: 15%; right: 5%; width: 35px; animation-delay: 4s;">  <div id="main" class="center">
+    <h1>Welcome to Our Album</h1>
+    <button class="btn" onclick="showAlbum('together')">TOGETHER</button>
+    <button class="btn" onclick="showAlbum('her')">HER</button>
+  </div>  <div id="together" class="album">
+    <div class="photo"><img src="https://i.imgur.com/RRTSPBP.jpeg" alt="Together 1"></div>
+    <div class="photo"><img src="https://i.imgur.com/tRsKAgD.jpeg" alt="Together 2"></div>
+    <div class="photo"><img src="https://i.imgur.com/clxiZUx.jpeg" alt="Together 3"></div>
+    <button class="btn back" onclick="goBack()">Back to Album</button>
+  </div>  <div id="her" class="album">
+    <div class="photo"><img src="https://i.imgur.com/u03k4TA.jpeg" alt="Her 1"></div>
+    <div class="photo"><img src="https://i.imgur.com/T9gBgwc.jpeg" alt="Her 2"></div>
+    <div class="photo"><img src="https://i.imgur.com/oTYIVuu.jpeg" alt="Her 3"></div>
+    <button class="btn back" onclick="goBack()">Back to Album</button>
+  </div>  <script>
+    function showAlbum(type) {
+      document.getElementById('main').style.display = 'none';
+      document.getElementById('together').style.display = (type === 'together') ? 'grid' : 'none';
+      document.getElementById('her').style.display = (type === 'her') ? 'grid' : 'none';
+    }
+
+    function goBack() {
+      document.getElementById('main').style.display = 'flex';
+      document.getElementById('together').style.display = 'none';
+      document.getElementById('her').style.display = 'none';
+    }
+  </script></body>
+</html>
